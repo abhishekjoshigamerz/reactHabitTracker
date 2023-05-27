@@ -36,3 +36,167 @@
     transform: rotate(360deg);
   }
 }
+
+
+body {
+  background-color: lightgrey;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 2rem auto;
+}
+
+form input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  flex-grow: 1;
+  margin-right: 1rem;
+}
+
+form input[type="submit"] {
+  padding: 0.5rem 1rem;
+  border: none;
+  color: white;
+  background-color: #007BFF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 400px;
+  margin: 2rem auto;
+}
+
+.input-container input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 300px;
+}
+.input-container .submit-button {
+  position: absolute;
+  right: 50px;
+  padding: 0.5rem 1rem;
+  border: none;
+  color: white;
+  background-color: #007BFF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.linkHabits{
+  text-decoration: none;
+  color:black;
+  cursor: pointer;
+
+}
+/* form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+form label {
+  margin-right: 1rem;
+}
+
+form input[type="text"] {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+form input[type="submit"] {
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  border: none;
+  color: white;
+  background-color: #007BFF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background-color: #0056b3;
+} */
+
+ul {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2);
+}
+
+.habbitTitle{
+  color: #333;
+  text-align: center;
+  width: 100%;
+}
+
+
+
+.habbitInfo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:20px;
+}
+
+.App2 {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.Calendar {
+  margin: 20px auto;
+  max-width: 900px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1);
+}
+
+.rbc-toolbar {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.rbc-toolbar button {
+  color: white;
+}
+
+.rbc-event {
+  background-color: #3498db;
+  color: white;
+  border-radius: 3px;
+  padding: 2px 5px;
+}
+
+[aria-hidden="true"] {
+  display: none;
+}
