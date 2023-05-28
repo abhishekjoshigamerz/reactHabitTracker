@@ -1,6 +1,8 @@
 import { createStore } from 'redux';
 import { ADD_HABIT } from './actions';
 import { UPDATE_DATE } from './actions';
+
+//redux store manage temporary states of the app and also provide a way to update the state.
 const initialState = {
   habits: []
 };

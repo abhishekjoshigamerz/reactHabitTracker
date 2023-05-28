@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+// habit forms to add new habits
 const HabitForm = ({ addHabit }) => {
     const [habit, setHabit] = useState('');
 

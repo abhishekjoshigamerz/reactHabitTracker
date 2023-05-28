@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FcAbout } from "react-icons/fc";
-
+// renders habits lists 
 
 
 const HabitList = ({ habits }) => (

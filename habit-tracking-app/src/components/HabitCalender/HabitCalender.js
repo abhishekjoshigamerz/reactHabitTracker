@@ -9,6 +9,8 @@ import { updateDate } from '../../store/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import ColorBox from './ColorBox';
 
+//render calender and also renders modal for making changes in habit if one did it or did not did it.
+
 // Localizer
 const localizer = momentLocalizer(moment)
 
@@ -19,11 +21,6 @@ const events = [{
   end: new Date(),
   allDay: true,
 }];
-
-// Custom toolbar that has no buttons
-
-
-// Custom components to make calendar not clickable
 
 
 // Formats
@@ -45,17 +42,17 @@ const HabitCalendar = (props) => {
   const now = new Date();
   const habitData = useSelector(state => state.habits).find(habit => habit.id === habitId.id);
   const dates = habitData.dates;
-  console.log(dates);
+
   
   let donedates = [];
   let notdonedates = [];
   let nonedates = [];
   // select done dates 
   for (let key  in dates){
-    console.log(typeof(key));
+  
     if(dates[key]=='Done'){
       let newdate =  moment(key).format('YYYY-MM-DD');
-      console.log(newdate);
+    
       donedates.push(newdate);
     }
      if (dates[key]=='Not Done'){
@@ -107,8 +104,7 @@ const HabitCalendar = (props) => {
 
   function markAsDone (selectedDate) {
 
-    console.log('Marked as Done');
-    console.log('Selected Date is ' + selectedDate);
+    
     const date = new Date(selectedDate);
     const timestamp = moment(date).format('YYYY-MM-DD');
    
@@ -144,7 +140,7 @@ const HabitCalendar = (props) => {
   const myEventsList = [];
 
   const handleSelect = ({ start }) => {
-    console.log('Selected Modals');
+  
     setSelectedDate(start);
     setModalIsOpen(true);
   }

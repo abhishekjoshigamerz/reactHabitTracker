@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const dispatch = useDispatch();
   const habitData = useSelector(state => state.habits);
-  console.log(`Old Habit Data is ${habitData}`); 
+ 
   const [habits, setHabits] = useState([]);
 
   const addHabit = (habit) => {
@@ -28,8 +28,7 @@ function App() {
     };
 
     dispatch(addHabitAction(newHabit));
-    console.log('Added Data in Redux');
-    console.log(habitData);
+  
     setHabits([...habits, newHabit]);
 
 };
