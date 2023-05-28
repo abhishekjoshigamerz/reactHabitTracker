@@ -4,6 +4,10 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import Modal from 'react-modal';
+import { useParams } from 'react-router-dom';
+import { updateDate } from '../../store/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import ColorBox from './ColorBox';
 
 // Localizer
 const localizer = momentLocalizer(moment)
@@ -27,34 +31,112 @@ const formats = {
   dayFormat: 'ddd D',
 };
 
+
+
 // Main component
 const HabitCalendar = (props) => {
   // Today's date
-
+  const habitId = useParams();
+  const dispatch = useDispatch();
   useEffect(() => {
     Modal.setAppElement('#root'); // or use any other selector that fits your app structure
   }, []);
 
   const now = new Date();
+  const habitData = useSelector(state => state.habits).find(habit => habit.id === habitId.id);
+  const dates = habitData.dates;
+  console.log(dates);
+  
+  let donedates = [];
+  let notdonedates = [];
+  let nonedates = [];
+  // select done dates 
+  for (let key  in dates){
+    console.log(typeof(key));
+    if(dates[key]=='Done'){
+      let newdate =  moment(key).format('YYYY-MM-DD');
+      console.log(newdate);
+      donedates.push(newdate);
+    }
+     if (dates[key]=='Not Done'){
+      let newdate = moment(key).format('YYYY-MM-DD');
+      notdonedates.push(newdate);
+    }
+    if(dates[key]=='None') {
+      let newdate = moment(key).format('YYYY-MM-DD');
+      nonedates.push(newdate);
+    }
+  }
+  
 
-  const selectedDates = [
-    '2023-05-10',
-    '2023-05-15',
-    '2023-05-20',
-  ];
+
+  
+  
 
   const customDayPropGetter = (date) => {
     const dateString = moment(date).format('YYYY-MM-DD');
-    if (selectedDates.includes(dateString)) {
+    if (donedates.includes(dateString)) {
       return {
         style: {
-          backgroundColor: "red",
+          backgroundColor: "#00FF00",
+          textColor: 'white',
         },
       };
     }
+    if(notdonedates.includes(dateString)){
+      return {
+        style: {
+          backgroundColor: "red",
+          textColor: 'white',
+        },
+      };
+    }
+
+    if(nonedates.includes(dateString)){
+      return {
+        style: {
+          backgroundColor: "#F5F5DC",
+          textColor: 'white',
+        },
+      };
+    }
+
     return {};
   };
+
+
+  function markAsDone (selectedDate) {
+
+    console.log('Marked as Done');
+    console.log('Selected Date is ' + selectedDate);
+    const date = new Date(selectedDate);
+    const timestamp = moment(date).format('YYYY-MM-DD');
    
+    const status = 'Done';
+    
+    dispatch(updateDate(habitId.id,timestamp,status));
+    closeModal();
+  }   
+
+  function markAsNotDone(selectedDate){
+    const date = new Date(selectedDate);
+    const timestamp =  moment(date).format('YYYY-MM-DD');
+   
+    const status = 'Not Done';
+    
+    dispatch(updateDate(habitId.id,timestamp,status));
+    closeModal();
+  }
+
+  function markAsNone(selectedDate){
+    const date = new Date(selectedDate);
+    const timestamp =  moment(date).format('YYYY-MM-DD');
+
+    const status = 'None';
+    
+    dispatch(updateDate(habitId.id,timestamp,status));
+    closeModal();
+  }
 
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -73,6 +155,7 @@ const HabitCalendar = (props) => {
   }
 
 
+
   // Calculate start of last week
   const startOfLastWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
 
@@ -85,9 +168,10 @@ const HabitCalendar = (props) => {
 
   return (
     <div style={{ height: '500pt' }}>
+      <ColorBox /><br />
       <Calendar
         localizer={localizer}
-        events={[]}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         min={minTime}
@@ -106,10 +190,10 @@ const HabitCalendar = (props) => {
       >
         <h2>Selected Date: {selectedDate && moment(selectedDate).format('MMMM Do YYYY')}</h2>
         <p>Mark Habit as </p>
-        <button className='doneHabit'>Done</button>
-        <button className='notdoneHabit'>Not Done</button>
-        <button className='noneHabit'>None</button>
-        <button onClick={closeModal}>Close</button>
+        <button className='btn doneHabit' onClick={()=>markAsDone(selectedDate)}>Done</button>
+        <button className='btn notdoneHabit' onClick={()=>markAsNotDone(selectedDate)} >Not Done</button>
+        <button className='btn noneHabit' onClick={()=>markAsNone(selectedDate)} >None</button>
+        <button onClick={closeModal} className='btn closeHabit'>Close</button>
       </Modal>
     </div>
   );

@@ -8,6 +8,8 @@ import { addHabit as addHabitAction } from './store/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
+
+
 function App() {
   const dispatch = useDispatch();
   const habitData = useSelector(state => state.habits);
@@ -18,10 +20,11 @@ function App() {
     const newHabit = {
         id : uuidv4(),
         name: habit,
-        days: 0,
-        bestStreak: 0,
         timeAdded: new Date(),
-        favorite: false,
+        dates: {
+          
+        },
+
     };
 
     dispatch(addHabitAction(newHabit));

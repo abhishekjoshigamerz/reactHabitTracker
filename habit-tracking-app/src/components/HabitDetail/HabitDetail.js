@@ -17,13 +17,14 @@ const HabitDetail = () => {
     if (!habit) {
         return <div>Habit not found</div>;
     }
-
+    console.log(habit);
     return (
     <div className='App2'>    
         <div className='Calendar'>
             <br />
             <h1>{habit.name}</h1>
             <p>{date}</p>
+            
             <HabitCalendar />
         </div>
   </div>

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FcAbout } from "react-icons/fc";
+
+
 
 const HabitList = ({ habits }) => (
    
@@ -10,10 +13,9 @@ const HabitList = ({ habits }) => (
                 <h3 className='habit-name'></h3>{habit.name} <br />
                 </div>
                 <div className='habbitInfo'>
-                Number of days: {habit.days} &nbsp;
-                Best streak: {habit.bestStreak} &nbsp;
-                Time added: {habit.timeAdded.toLocaleString(undefined, { dateStyle: 'short' })} &nbsp;
-                Favorite : Yes &nbsp;
+                Created on : {habit.timeAdded.toLocaleString(undefined, { dateStyle: 'short' })} &nbsp;
+                 <FcAbout />
+      
                 </div>
             </li>
             </NavLink>
